@@ -9,13 +9,13 @@
 
 ## 1. Repository Overview
 
-본 리포지토리는 **Monorepo** 구조를 채택하며, B2B/B2C 기업용 웹사이트(`External_Web`)와 사내 대시보드(`Internal_Web`)를 동일 저장소 내에서 관리하기 위한 마스터 템플릿이다.
+본 리포지토리는 **Monorepo** 구조를 채택하며, 비즈니스 영역(Domain)에 따라 `External`(기업용 웹사이트)과 `Internal`(사내 대시보드)을 최상위 디렉토리로 분리하여 관리한다.
 
 **핵심 원칙:**
-- **프레임워크 이원화:** External(Next.js 15 App Router - SEO 최적화) / Internal(React 18 Vite SPA - 빠른 인터랙션)
-- **관심사 분리(Separation of Concerns):** Frontend/Backend, External/Internal을 물리적 디렉토리로 분리
-- **도메인 주도 설계(Domain-Driven):** 각 비즈니스 기능을 독립된 도메인 모듈로 캡슐화
-- **재사용 극대화:** 공통 컴포넌트와 유틸리티를 `_shared` 영역에 집중
+- **도메인 중심 분리:** External과 Internal을 최상위 수준에서 분리하여 관심사 격리
+- **프레임워크 이원화:** External(Next.js 15 App Router) / Internal(React 18 Vite SPA)
+- **도메인 내 계층화:** 각 도메인 내부에 Frontend와 Backend를 독립적으로 구성
+- **단계별 재사용:** 도메인 내 공유는 `{Domain}/_shared`에서, 전역 공유는 `Root/_shared`에서 관리
 
 ---
 
@@ -23,96 +23,34 @@
 
 ```text
 Root/
-├── docs/                          # 프로젝트 문서 (Context, PRD, SRS, Design 등)
+├── docs/                          # 프로젝트 문서
+├── _shared/                       # 전역 공유 모듈 (인터페이스, 유틸리티 등)
 │
-├── Frontend/
-│   ├── External_Web/              # 기업 소개 웹사이트 (Next.js App Router)
+├── External/                      # 기업 소개 웹사이트 도메인
+│   ├── Frontend/                  # Next.js App Router 기반 라우팅
 │   │   ├── app/                   # Next.js App Router 기반 라우팅
 │   │   │   ├── (marketing)/       # 마케팅 페이지 그룹 (랜딩, 소개 등)
-│   │   │   │   ├── page.tsx       # 메인 랜딩 페이지
-│   │   │   │   ├── about/
-│   │   │   │   ├── services/
-│   │   │   │   └── contact/
-│   │   │   ├── (legal)/           # 법적 페이지 그룹 (이용약관, 개인정보 등)
-│   │   │   ├── layout.tsx         # 루트 레이아웃
-│   │   │   ├── not-found.tsx      # 404 페이지
-│   │   │   ├── error.tsx          # 에러 바운더리
-│   │   │   ├── loading.tsx        # 전역 로딩 UI
-│   │   │   └── globals.css        # Tailwind 디렉티브 전용 (커스텀 CSS 작성 금지)
-│   │   ├── components/
-│   │   │   ├── blocks/            # 재사용 섹션 블록 (Hero, Feature, CTA 등)
-│   │   │   │   ├── hero/
-│   │   │   │   │   ├── HeroTypeA.tsx
-│   │   │   │   │   ├── HeroTypeB.tsx
-│   │   │   │   │   └── HeroTypeC.tsx
-│   │   │   │   ├── feature/
-│   │   │   │   ├── social-proof/
-│   │   │   │   └── action/
-│   │   │   ├── layout/            # 레이아웃 컴포넌트 (Header, Footer, Nav)
-│   │   │   │   ├── Header.tsx
-│   │   │   │   ├── Footer.tsx
-│   │   │   │   ├── Navigation.tsx
-│   │   │   │   └── MobileMenu.tsx
-│   │   │   └── ui/                # 원자 수준 UI 컴포넌트 (Button, Badge 등)
-│   │   │       ├── Button.tsx
-│   │   │       ├── Badge.tsx
-│   │   │       ├── Card.tsx
-│   │   │       └── index.ts       # 배럴 익스포트
-│   │   ├── hooks/                 # 커스텀 훅
-│   │   │   ├── useScrollAnimation.ts
-│   │   │   ├── useMediaQuery.ts
-│   │   │   └── useFormSubmit.ts
-│   │   ├── services/              # API 호출 및 외부 서비스 연동 모듈
-│   │   │   ├── api.ts             # Axios/Fetch 인스턴스 (Base URL, Interceptor)
-│   │   │   ├── contact.service.ts
-│   │   │   └── analytics.service.ts
-│   │   ├── interfaces/            # TypeScript 타입 및 인터페이스 정의
-│   │   │   ├── common.types.ts
-│   │   │   ├── contact.types.ts
-│   │   │   └── block.types.ts
-│   │   ├── utils/                 # 공통 유틸리티 함수
-│   │   │   ├── cn.ts              # clsx + twMerge 래퍼
-│   │   │   ├── seo.ts             # 메타 태그 / JSON-LD 헬퍼
-│   │   │   └── format.ts          # 날짜, 숫자 포맷 유틸리티
-│   │   ├── constants/             # 상수 및 설정값
-│   │   │   ├── navigation.ts      # 네비게이션 메뉴 아이템
-│   │   │   ├── siteConfig.ts      # 사이트 전역 메타 정보
-│   │   │   └── theme.ts           # 테마 관련 상수
-│   │   ├── public/                # 정적 자산
-│   │   │   ├── images/
-│   │   │   ├── fonts/
-│   │   │   ├── favicon.ico
-│   │   │   ├── robots.txt
-│   │   │   └── sitemap.xml
-│   │   ├── tailwind.config.ts     # Tailwind 설정 (테마 토큰 정의)
-│   │   ├── next.config.ts         # Next.js 설정
-│   │   ├── tsconfig.json
+│   │   │   ├── (legal)/           # 법적 페이지 그룹
+│   │   │   ├── layout.tsx
+│   │   │   └── globals.css
+│   │   ├── components/            # blocks/, layout/, ui/
+│   │   ├── hooks/
+│   │   ├── services/
+│   │   ├── interfaces/
+│   │   ├── utils/
+│   │   ├── constants/
 │   │   └── package.json
 │   │
-│   ├── Internal_Web/              # 사내 대시보드 (Phase 3, 구조 동일)
-│   │   ├── src/
-│   │   │   ├── components/        # 공통 UI 컴포넌트
-│   │   │   ├── hooks/             # Query/Logic Hooks
-│   │   │   ├── layouts/           # AdminLayout.tsx
-│   │   │   ├── pages/             # 화면 단위 컴포넌트 (PascalCase)
-│   │   │   ├── routes/            # React Router 설정
-│   │   │   ├── services/          # API 호출 (Axios + TanStack Query)
-│   │   │   └── App.tsx            # 최상위 라우터 진입점
-│   │   ├── index.html             # Vite Entry
-│   │   └── vite.config.ts         # Vite 설정 (Tailwind v4 포함)
+│   ├── Backend/                   # NestJS 기반 API
+│   │   ├── src/                   # [domain] 모듈별 구성
+│   │   ├── prisma/
+│   │   └── package.json
 │   │
-│   └── _shared/                   # Frontend 공유 모듈
-│       ├── interfaces/            # External / Internal 공통 타입
-│       ├── utils/                 # 공통 유틸리티
-│       └── constants/             # 공통 상수
+│   └── _shared/                   # External 도메인 내 공통 모듈
 │
-├── Backend/
-│   ├── External_Web/              # 기업 소개 웹사이트 API (NestJS)
+├── Internal/                      # 사내 대시보드 도메인
+│   ├── Frontend/                  # React 18 Vite SPA
 │   │   ├── src/
-│   │   │   ├── [domain]/          # 도메인별 리소스 모듈
-│   │   │   │   ├── dto/
-│   │   │   │   │   ├── create-[domain].dto.ts
-│   │   │   │   │   ├── update-[domain].dto.ts
 │   │   │   │   │   └── [domain]-response.dto.ts
 │   │   │   │   ├── entities/
 │   │   │   │   │   └── [domain].entity.ts
@@ -391,13 +329,14 @@ interface ApiErrorResponse {
 <type>(<scope>): <short summary>
 
 Types: feat, fix, docs, style, refactor, perf, test, chore, ci
-Scope: external-fe, external-be, internal-fe, internal-be, docs, config
+Scope: ext-fe, ext-be, int-fe, int-be, docs, config, shared
 
 Examples:
-  feat(external-fe): add HeroTypeB component with animation
-  fix(external-be): resolve contact form validation error
+  feat(ext-fe): add HeroTypeB component with animation
+  fix(ext-be): resolve contact form validation error
   docs: update PRD with new client requirements
   chore(config): update Tailwind config with brand colors
+  refactor(shared): optimize date utility
 ```
 
 ### 7.3 PR Rules

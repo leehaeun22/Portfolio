@@ -3,8 +3,8 @@
 > **[AI Agent Instruction]**
 > - 에이전트는 고객의 자연어 요구사항을 분석하여 아래 각 섹션의 빈칸(`[AI가 채우는 곳: ...]`)을 채운다.
 > - 고객이 **명시하지 않은 기능은 절대 임의로 추가하지 않는다.** (Over-engineering 엄금)
-> - 모든 기능은 `External_Web`과 `Internal_Web` 중 어디에 속하는지 명확히 구분한다.
-> - 현재 `FLAG_NO_INTERNAL = true` 상태일 경우, **External_Web 소속 기능만** 구현 대상이다.
+> - 모든 기능은 `External`과 `Internal` 중 어디에 속하는지 명확히 구분한다.
+> - 현재 `FLAG_NO_INTERNAL = true` 상태일 경우, **External 소속 기능만** 구현 대상이다.
 > - 요구사항이 모호한 경우, 에이전트는 **가정(Assumption)을 세우고 사용자에게 확인**을 요청한다.
 > - PRD 작성 완료 후, 반드시 `@SRS.md`를 연쇄적으로 작성한다.
 
@@ -44,6 +44,6 @@
 
 ## 3. 필수 기능 명세 (User Stories)
 
-### 3.1 External_Web (고객 대상 서비스/웹사이트)
+### 3.1 External (고객 대상 서비스/웹사이트)
 
 | ID

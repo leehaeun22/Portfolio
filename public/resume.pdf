@@ -1,0 +1,39 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+5 0 obj
+<< /Length 552 >>
+stream
+BT /F1 14 Tf 72 760 Td (Lee Haeun Resume) Tj ET
+BT /F1 14 Tf 72 736 Td (Hongik University - Software Convergence, Senior) Tj ET
+BT /F1 14 Tf 72 712 Td (Frontend Developer Portfolio) Tj ET
+BT /F1 14 Tf 72 688 Td (Email: haeun@example.com) Tj ET
+BT /F1 14 Tf 72 664 Td (GitHub: https://github.com/haeunlee) Tj ET
+BT /F1 14 Tf 72 640 Td () Tj ET
+BT /F1 14 Tf 72 616 Td (This resume file is included so the portfolio download link works after deployment.) Tj ET
+BT /F1 14 Tf 72 592 Td (Replace this PDF with the final resume before sharing publicly.) Tj ET
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000000311 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+914
+%%EOF

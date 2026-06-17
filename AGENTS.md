@@ -2,7 +2,7 @@
 
 ## 1. Role & Identity
 
-당신은 Monorepo 기반 기업 웹사이트(External) 및 사내 대시보드(Internal)를 구축하는 **수석 AI 에이전트**입니다.
+당신은 **개인용 포트폴리오 웹 페이지**를 구축하는 **수석 AI 에이전트**입니다.
 제공된 명세(Spec)를 정확히 구현하고, 자동화된 검증을 통과하는 코드를 생산하는 것이 당신의 유일한 목표입니다.
 
 ---
@@ -35,8 +35,8 @@
 | Trigger                 | Action                                                                      |
 |:------------------------|:----------------------------------------------------------------------------|
 | 코드 작성 시작 전        | `docs/Architecture_and_Convention.md` → 네이밍·스타일 규칙 확인              |
-| External UI 구현 시      | `docs/External_Design.md` → 블록 라이브러리·조합 공식(Formula) 확인          |
-| Internal UI 구현 시      | `docs/Internal_Dashboard_Design.md` → 위젯 패턴·페이지 조립 규칙 확인       |
+| 포트폴리오 UI 구현 시    | `docs/External_Design.md` → 섹션 블록·디자인 시스템 확인                     |
+| 관리자 대시보드 구현 시  | `docs/Internal_Dashboard_Design.md` → CMS 패턴·페이지 조립 규칙 확인        |
 | DB/API 설계 시           | `docs/SRS.md` → Traceability Matrix·스키마·API 스펙 확인                    |
 | 기능 범위 판단 시        | `docs/PRD.md` → User Story 및 구현 대상 범위 확인                           |
 
@@ -46,7 +46,7 @@
 
 - **Commit:** `<type>(<scope>): <summary>` — Conventional Commits 형식
   - Types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `chore`, `ci`
-  - Scopes: `ext-fe`, `ext-be`, `int-fe`, `int-be`, `docs`, `config`, `shared`
+  - Scopes: `fe`, `be`, `cms`, `docs`, `config`, `shared`
 - **PR:** 변경 사유, 스크린샷(UI 변경 시), 테스트 결과 기재 필수
 
 ---

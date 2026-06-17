@@ -18,6 +18,8 @@ const STATS = [
   { value: '10+', label: '기술 스택' },
   { value: '1', label: '수상 경험' },
 ];
+const BASE_PATH = process.env.NODE_ENV === 'production' ? '/Portfolio' : '';
+const PROFILE_IMAGE_SRC = `${BASE_PATH}/profile.png`;
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
@@ -40,7 +42,7 @@ export function AboutSection() {
             <div className="relative">
               <div className="relative flex h-72 w-72 items-center justify-center overflow-hidden rounded-3xl border border-rose-100 bg-white shadow-xl shadow-rose-100/40 dark:border-rose-900/20 dark:bg-neutral-900 dark:shadow-rose-950/20 md:h-80 md:w-80">
                 <Image
-                  src="/avatar.png"
+                  src={PROFILE_IMAGE_SRC}
                   alt={`${PROFILE.name} 프로필 사진`}
                   width={320}
                   height={320}

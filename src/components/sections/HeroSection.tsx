@@ -7,6 +7,8 @@ import { PROFILE } from '@/constants/profile';
 import { fadeInUp } from '@/utils/animations';
 
 const ROLES = ['프론트엔드 개발자', 'UI/UX 디자이너', '크리에이티브 메이커'];
+const BASE_PATH = process.env.NODE_ENV === 'production' ? '/Portfolio' : '';
+const PROFILE_IMAGE_SRC = `${BASE_PATH}/profile.png`;
 
 export function HeroSection() {
   const handleScrollToAbout = () => {
@@ -32,7 +34,7 @@ export function HeroSection() {
             <div className="relative mb-3">
               <div className="flex h-32 w-32 items-center justify-center overflow-hidden rounded-full border-4 border-white shadow-xl shadow-rose-200/40 dark:border-neutral-900 dark:shadow-rose-950/30 md:h-36 md:w-36">
                 <Image
-                  src="/avatar.png"
+                  src={PROFILE_IMAGE_SRC}
                   alt={`${PROFILE.name} 프로필 이미지`}
                   width={144}
                   height={144}

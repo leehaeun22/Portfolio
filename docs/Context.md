@@ -78,6 +78,11 @@
 
 ## 5. Progress Log (Milestones)
 
+### 2026-06-17 — GitHub Pages Profile Image Path Fix
+- [x] `public/profile.png`를 추가해 프로필 이미지 파일명을 단순화
+- [x] Hero/About 프로필 이미지 `src`가 production export에서 `/Portfolio/profile.png`를 사용하도록 수정
+- [x] `npm run build` 통과 및 `out/index.html`의 Hero 이미지 경로가 `/Portfolio/profile.png`로 생성되는지 확인
+
 ### 2026-06-17 — GitHub Pages Static Export Setup
 - [x] `next.config.ts`에 GitHub Pages용 `output: 'export'`, `basePath`, `assetPrefix`, `images.unoptimized` 설정 추가
 - [x] `.github/workflows/deploy.yml`을 추가해 main push 시 Node.js 20, `npm ci`, `npm run build`, Pages artifact upload, Pages deploy가 실행되도록 구성

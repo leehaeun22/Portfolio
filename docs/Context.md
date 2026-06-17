@@ -78,6 +78,12 @@
 
 ## 5. Progress Log (Milestones)
 
+### 2026-06-17 — GitHub Pages Static Export Setup
+- [x] `next.config.ts`에 GitHub Pages용 `output: 'export'`, `basePath`, `assetPrefix`, `images.unoptimized` 설정 추가
+- [x] `.github/workflows/deploy.yml`을 추가해 main push 시 Node.js 20, `npm ci`, `npm run build`, Pages artifact upload, Pages deploy가 실행되도록 구성
+- [x] `public/.nojekyll` 빈 파일 생성
+- [x] `npm run build` 통과 및 `out` 정적 export 폴더 생성 확인
+
 ### 2026-06-17 — GitHub Repository Push ✅
 - [x] Git remote를 `https://github.com/leehaeun22/Portfolio.git`로 변경
 - [x] Next.js 포트폴리오 웹사이트 소스, public assets, package files 커밋 생성

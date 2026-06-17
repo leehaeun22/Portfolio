@@ -78,6 +78,12 @@
 
 ## 5. Progress Log (Milestones)
 
+### 2026-06-17 — GitHub Repository Push ✅
+- [x] Git remote를 `https://github.com/leehaeun22/Portfolio.git`로 변경
+- [x] Next.js 포트폴리오 웹사이트 소스, public assets, package files 커밋 생성
+- [x] `.gitignore`를 Vercel/Next.js 배포에 맞게 정리하고 `.gitattributes`로 binary asset 보호
+- [x] `main` 브랜치를 GitHub `leehaeun22/Portfolio` 저장소에 push 완료
+
 ### 2026-06-17 — Missing Webpack Chunk Recovery ✅
 - [x] `Cannot find module './611.js'` 런타임 오류 원인인 stale `.next` / dev server 상태 정리
 - [x] 포트 3000의 기존 Next.js dev server 프로세스 종료
